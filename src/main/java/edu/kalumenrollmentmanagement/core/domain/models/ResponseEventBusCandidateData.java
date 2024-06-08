@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ResponseEventBusCandidateData implements Serializable {
 	private String clientId;
-    private String email;   
+    private String email;       
 }

@@ -13,5 +13,5 @@ public class OrderCandidate implements Serializable {
 	private String orderId;
     private String orderDate;
     private String status;
-    private OrderData data;
+    private OrderData data;    
 }

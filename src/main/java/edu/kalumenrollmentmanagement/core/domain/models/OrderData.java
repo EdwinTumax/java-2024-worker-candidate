@@ -17,5 +17,5 @@ public class OrderData implements Serializable {
     private String email;
     private String carreraId;
     private String examenId;
-    private String jornadaId;
+    private String jornadaId;    
 }

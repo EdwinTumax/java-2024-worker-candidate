@@ -58,13 +58,13 @@ public class QueueConsumerVerticle extends AbstractVerticle {
 							DeliveryOptions options = new DeliveryOptions();
 							options.addHeader("count","1");							
 							this.eventBus.request(EVENT_BUS_ENROLLMENT_PROCESS, message.body().toJsonObject(), options, resultEventBus -> {
-								if(resultEventBus.succeeded()) {									
+								if(resultEventBus.succeeded()) {
 									ResponseEventBusCandidate responseEventBus = gson.fromJson(resultEventBus.result().body().toString(), ResponseEventBusCandidate.class);
 									if(responseEventBus.getStatusCode().equals("201")) {
 										this.rabbitMQClient.basicAck(message.envelope().getDeliveryTag(), false, asyncResponse -> {
 											this.logger.info("El mensaje en la cola fue procesada exitosamente");
 										});	
-									} else if(responseEventBus.getStatusCode().equals("400")) {
+									} else if(responseEventBus.getStatusCode().equals("403")) {
 										this.rabbitMQClient.basicAck(message.envelope().getDeliveryTag(), false, asynresponse -> {
 											this.logger.warn("Hubo un problema al momento de procesar la orden ".concat(responseEventBus.getOrderId()));
 										});
